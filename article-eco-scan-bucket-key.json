@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "capstone-eco-scan",
+  "private_key_id": "80c59422d48ff9e0744c118d0de175434d6d2043",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1oKQpg9DYXzbj\n9SbrwGhS7wv5jT/+rM3Epv2idFoS+ebv09YyS11LS9w9tY6sX0b3zBfIntddplCZ\nCp/vkx3k2NDn5Fc88Sg408MBYBCgasHolYNqeqT6ZucMjmUw/hbvzI1Y7MjbYz4x\n4RRsmuI4rjY3KLuwAJrcZoD5GIhGT0zdYeDDXt/uQqyckEe7eI7CBSWHH/mbviMP\nXLwg5WNcR5tQk6W8YNnKJOTKlEueFlSv2Vo8owNkdIjH1Zib3giC4z9dDD3DgbWU\nng/9ryifQQgk9s13roJNycDiWYV69Oh0uDVagkzZyGw5Kee6BIpWk1KC/qKigUh8\n7FxgBA9PAgMBAAECggEAAwX+fnjdwtmkPVRsqe/hggd4VfMS7pWk0a6anbRoBI5L\nLh8trR7Dtk7/Iw+dXjikBmaE14B92EpMhCs51Kyd/H+F6IHa9Mx4csTU/Mt7+Zek\nd0ExAgEkT804m0ifwZpqFsZe3m0HhV4RDnoPM3qCHTOKiSoxB9yA8FNMRcPqnNFt\nwogAbfy0bMBLVx3MUbc6R0a2B3r2rUnI9Wyzy1eLwn6LAy3mLvQIAzdmyBdxSXFn\nkx1B2dKrU9iew28vgfoHdGIH6bRw3uOBwBcAWWdtEaxeDXj5b5TeicB4mQlqBP4j\nO89uB9r6sXaYHG6BWy6knVjPxnFcspt2r/M9XqcgLQKBgQD38SdZ/6ZO61nEXqRB\n61NX32QVSd9/2Ky6lekBv4wv20edFZlrVsCRc7KzyOKIySwyaiD/O3RAN7lBuvuL\n6tzdQB+Nrp98KbdGgzGS+m+psVLab5IsNyoTIomfFlTGPh3FROWDcPn2a8MNpmvt\nlOCsBjgH/JqsqJl55JvZYAgAbQKBgQC7h8JdNNjkUAj+suf4a9SmROonOuTX7nnQ\nA6DjPVpMaE2B2Rfd0crrmi2r5DErm5Y2ijOp+YMtpCIVqvIaSiZq7Rqu42ny3fLn\n7xQTRNKiJOGwSCB7oNakImWBERIYqiQ/gGPbGy/LaGMLz4sry/GbmEisGLG6+ssS\nA7bW2b/RKwKBgGbWAMpVPHdTKiJGVr54ilLR9sLVpvtxtQKWltQAzHY07tj6Um2w\nx6IMaLwkv8CYH9qxJgp2cFsKQa4/jYGU4hJqPCwZl1B6ROfcFj2t3Y52W7T5vZjV\nMIBLPOVc78Bhlxtw3fjMbQCF5ZrNwcoCi8UNt0Oow8aFD1L9PJ7GM8tpAoGBALCa\nOwo3uIHadX4W0an7MnmasMBdECHh7UleAWe+4YjPOR6taXJ2HZkeyx/zd/LPRPj7\n0Yei+ExFI+wv3muvpNpRjC1i8OXM6vJNDiTPTWVxQjEW27BRWZGc6uZPQzGDGTvM\nFz3CLpJqLcxzmWaXW2LiWJ3pa4bgo9jFMqzGx4OdAoGAGDw8skJOEAfF5Q/4jfL1\nxyfR4Hod+9qygCsKY3Fo2IYEfV2N89xuNowKQkCrdi8Znxf/CF/ndi/+eY5j2rcD\n6ApWWaMDItZd80VaE/8CZ8MBSDVdUAKTYh27lpq9ZyHLB+kzTez6hf+bfaCTm4Nw\nj4L94P++E+lTsXlpGbLEwDE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "article-eco-scan-bucket-servic@capstone-eco-scan.iam.gserviceaccount.com",
+  "client_id": "105473409231896163440",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/article-eco-scan-bucket-servic%40capstone-eco-scan.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
