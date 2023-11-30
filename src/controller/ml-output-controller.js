@@ -2,8 +2,10 @@ const processFile = require("../middleware/upload-image-article");
 const { format } = require("util");
 const { Storage } = require("@google-cloud/storage");
 
-const storage = new Storage({ keyFilename: "article-eco-scan-bucket-key.json" });
-const bucket = storage.bucket("article-eco-scan-bucket");
+const storage = new Storage({
+  keyFilename: "ml-ouput-eco-scan-bucket-key.json",
+});
+const bucket = storage.bucket("ml-ouput-eco-scan-bucket");
 
 const upload = async (req, res) => {
   try {
@@ -31,8 +33,7 @@ const upload = async (req, res) => {
         await bucket.file(req.file.originalname).makePublic();
       } catch {
         return res.status(500).send({
-          message:
-            `Uploaded the file successfully: ${req.file.originalname}, but public access is denied!`,
+          message: `Uploaded the file successfully: ${req.file.originalname}, but public access is denied!`,
           url: publicUrl,
         });
       }
