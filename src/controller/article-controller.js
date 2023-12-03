@@ -1,8 +1,5 @@
 const { db } = require("../db/firestore");
 
-// const collectionName = process.env.ARTICLE_COLLECTION;
-// console.log(typeof collectionName);
-
 const getAllArticle = async (req, res) => {
   try {
     const articleRef = db.collection("article-content");
