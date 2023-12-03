@@ -3,6 +3,7 @@ const router = express.Router();
 const articleController = require("../controller/article-controller");
 const mlOuputController = require("../controller/ml-output-controller");
 const authController = require("../controller/authController");
+const foodEmission = require("../controller/food-emission-controller");
 
 let routes = (app) => {
   router.get("/article", articleController.getAllArticle);
@@ -14,6 +15,10 @@ let routes = (app) => {
 
   router.post("/auth/signUp", authController.signUpUsers);
   router.post("/auth/login",authController.loginUsers);
+
+  router.get("/emission/:name", foodEmission.getEmission);
+
+
   app.use(router);
 };
 
