@@ -1,16 +1,5 @@
-require("dotenv").config({ path: "../../.env" }); // Load `.env` file
+const { db } = require("../db/firestore");
 
-const express = require("express");
-const app = express();
-
-const admin = require("firebase-admin");
-const credentials = require("../../article-eco-scan-bucket-key.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(credentials),
-});
-
-const db = admin.firestore();
 // const collectionName = process.env.ARTICLE_COLLECTION;
 // console.log(typeof collectionName);
 
