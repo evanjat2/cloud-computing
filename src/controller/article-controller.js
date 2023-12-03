@@ -1,44 +1,49 @@
-const { format } = require("util");
-const { Storage } = require("@google-cloud/storage");
+require("dotenv").config({ path: "../../.env" }); // Load `.env` file
 
-const storage = new Storage({ keyFilename: "article-eco-scan-bucket-key.json" });
-const bucket = storage.bucket("article-eco-scan-bucket");
+const express = require("express");
+const app = express();
 
-const getListFiles = async (req, res) => {
+const admin = require("firebase-admin");
+const credentials = require("../../article-eco-scan-bucket-key.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(credentials),
+});
+
+const db = admin.firestore();
+// const collectionName = process.env.ARTICLE_COLLECTION;
+// console.log(typeof collectionName);
+
+const getAllArticle = async (req, res) => {
   try {
-    const [files] = await bucket.getFiles();
-    let fileInfos = [];
+    const articleRef = db.collection("article-content");
+    const response = await articleRef.get();
+    let responseArr = [];
 
-    files.forEach((file) => {
-      fileInfos.push({
-        name: file.name,
-        url: file.metadata.mediaLink,
-      });
+    response.forEach((doc) => {
+      responseArr.push(doc.data());
     });
 
-    res.status(200).send(fileInfos);
-  } catch (err) {
-    console.log(err);
-
-    res.status(500).send({
-      message: "Unable to read list of files!",
-    });
+    res.send(responseArr);
+  } catch (error) {
+    console.log(error);
   }
 };
 
-const download = async (req, res) => {
+const getSpecificArticle = async (req, res) => {
   try {
-    const [metaData] = await bucket.file(req.params.name).getMetadata();
-    res.redirect(metaData.mediaLink);
+    const articleRef = db
+      .collection("article-content")
+      .doc(req.params.id);
+    const response = await articleRef.get();
     
-  } catch (err) {
-    res.status(500).send({
-      message: "Could not download the file. " + err,
-    });
+    res.send(response.data());
+  } catch (error) {
+    console.log(error);
   }
 };
 
 module.exports = {
-  getListFiles,
-  download,
+  getAllArticle,
+  getSpecificArticle,
 };

@@ -1,3 +1,5 @@
+
+
 # Logs
 logs
 *.log
@@ -130,5 +132,5 @@ dist
 .pnp.*
 
 # GCP key
-ml-ouput-eco-scan-bucket-key.json
 article-eco-scan-bucket-key.json
+ml-ouput-eco-scan-bucket-key.json
