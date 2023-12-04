@@ -44,6 +44,8 @@ const loginUsers = async (req, res) => {
           expiresIn: process.env.JWT_LIFETIME,
         });
         res.status(200).json({ user, token });
+      } else{
+        res.status(400).send("Kredensial Invalid");
       }
     } else {
       res.status(400).send("Kredensial Invalid");
