@@ -92,11 +92,13 @@ This endpoint is used to retrieve all articles stored in the database. There is 
         "text": "Food emission is dangerous",
         "title": "Food Emissions",
         "author-year": "2022",
-        "desc": "This is an article about food emissions"
+        "desc": "This is an article about food emissions",
+        "imgUrl"
+"https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg"
     }
 ]
 ```
-## Endpoint Get Specific Article (BELUM DITEST)
+## Endpoint Get Specific Article
 
 ### Option 1: Using IP Address
 
