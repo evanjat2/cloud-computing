@@ -85,7 +85,7 @@ This endpoint is used to authenticate and login a user. The request body should 
 This endpoint is used to retrieve all articles stored in the database. There is no request; only a response.
 
 ## Example Response
-```array 
+```json 
 [
     {
         "author": "author",
