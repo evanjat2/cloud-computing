@@ -1,6 +1,6 @@
 # Auth API Documentation
 
-## Endpoint
+## Endpoint Sign Up
 
 ### Option 1: Using IP Address
 
@@ -36,7 +36,7 @@ This endpoint is used to sign up a user. When making a POST request to this endp
     "token": "example_token"
 }
 ```
-## Endpoint
+## Endpoint Login
 
 ### Option 1: Using IP Address
 
@@ -69,4 +69,30 @@ This endpoint is used to authenticate and login a user. The request body should 
     },
     "token": "example_token"
 }
+```
+## Endpoint Get All Article
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/article`
+- **Method:** GET
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/article`
+- **Method:** GET
+
+This endpoint is used to retrieve all articles stored in the database. There is no request; only a response.
+
+## Example Response
+```json 
+[
+    {
+        "author": "John Doe",
+        "text": "Food emission is dangerous",
+        "title": "Food Emissions",
+        "author-year": "2022",
+        "desc": "This is an article about food emissions"
+    }
+]
 ```
