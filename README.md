@@ -88,11 +88,11 @@ This endpoint is used to retrieve all articles stored in the database. There is 
 ```json 
 [
     {
-        "author": "author",
-        "text": "text",
-        "title": "title",
-        "author-year": "author-year",
-        "desc": "desc"
+        "author": "John Doe",
+        "text": "Food emission is dangerous",
+        "title": "Food Emissions",
+        "author-year": "2022",
+        "desc": "This is an article about food emissions"
     }
 ]
 ```
