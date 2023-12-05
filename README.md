@@ -93,8 +93,7 @@ This endpoint is used to retrieve all articles stored in the database. There is 
         "title": "Food Emissions",
         "author-year": "2022",
         "desc": "This is an article about food emissions",
-        "imgUrl"
-"https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg"
+        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg"
     }
 ]
 ```
