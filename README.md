@@ -124,7 +124,7 @@ This endpoint is used to retrieve specific articles stored in the database. The 
 ```json 
 [
     {
-        "id": "Food Emissions",
+        "id": "K07VTvSqFPEPnkBVhwnA",
         "data": {
             "author": "John Doe",
             "text": "Food emission is dangerous",
