@@ -18,12 +18,24 @@ const getAllArticle = async (req, res) => {
 
 const getSpecificArticle = async (req, res) => {
   try {
-    const articleRef = db
-      .collection("article-content")
-      .doc(req.params.id);
-    const response = await articleRef.get();
-    
-    res.send(response.data());
+    const { title } = req.body;
+
+    const articleRef = db.collection("article-content");
+
+    const snapshot = await articleRef.where("title", "==", title).get();
+
+    if (snapshot.empty) {
+      console.log("No matching documents.");
+      return;
+    }
+
+    const dataArray = [];
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      dataArray.push({ id: doc.id, data });
+    });
+
+    res.status(200).send(dataArray);
   } catch (error) {
     console.log(error);
   }
