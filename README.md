@@ -96,3 +96,40 @@ This endpoint is used to retrieve all articles stored in the database. There is 
     }
 ]
 ```
+## Endpoint Get Specific Article (BELUM DITEST)
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/article/detail`
+- **Method:** GET
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/article/detail`
+- **Method:** GET
+
+This endpoint is used to retrieve specific articles stored in the database. The request body should include title. Upon successful execution, the response will include the user's details and a token.
+
+## Example Request
+
+```json
+{
+    "title": "Food Emissions"
+}
+```
+
+## Example Response
+```json 
+[
+    {
+        "id": "Food Emissions",
+        "data": {
+            "author": "John Doe",
+            "text": "Food emission is dangerous",
+            "title": "Food Emissions",
+            "author-year": "2022",
+            "desc": "This is an article about food emissions"
+        }
+    }
+]
+```
