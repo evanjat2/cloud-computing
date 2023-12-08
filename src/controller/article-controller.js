@@ -40,12 +40,15 @@ const getSpecificArticle = async (req, res) => {
       return;
     }
 
+    let responseArr = [];
+
     //Access data and send it
     snapshot.forEach((doc) => {
       const data = doc.data();
-      res.status(200).json({id:doc.id, data});
+      responseArr.push({id:doc.id, data});
     });
 
+    res.status(200).send(responseArr);
   } catch (error) {
     console.log(error);
   }
