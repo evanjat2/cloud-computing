@@ -88,12 +88,18 @@ This endpoint is used to retrieve all articles stored in the database. There is 
 ```json 
 [
     {
-        "author": "John Doe",
-        "text": "Food emission is dangerous",
-        "title": "Food Emissions",
-        "author-year": "2022",
-        "desc": "This is an article about food emissions",
-        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg"
+        "id": "K07VTvSqFPEPnkBVhwnA",
+        "data": {
+            "author": "John Doe",
+            "title": "Food Emissions",
+            "author-year": "2022",
+            "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
+            "desc": [
+                "Paragraph 1",
+                "Paragraph 2"
+            ],
+            "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+        }
     }
 ]
 ```
@@ -123,14 +129,26 @@ This endpoint is used to retrieve specific articles stored in the database. The 
 ```json 
 [
     {
-        "id": "K07VTvSqFPEPnkBVhwnA",
-        "data": {
-            "author": "John Doe",
-            "text": "Food emission is dangerous",
-            "title": "Food Emissions",
-            "author-year": "2022",
-            "desc": "This is an article about food emissions"
-        }
-    }
+        "author": "John Doe",
+        "title": "First Article",
+        "author-year": "2022",
+        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
+        "desc": [
+            "Paragraph 1",
+            "Paragraph 2"
+        ],
+        "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+    },
+    {
+        "author": "John Doe",
+        "title": "Second Article",
+        "author-year": "2022",
+        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
+        "desc": [
+            "Paragraph 1",
+            "Paragraph 2"
+        ],
+        "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+    },
 ]
 ```
