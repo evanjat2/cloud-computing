@@ -21,7 +21,7 @@ let routes = (app) => {
   router.get("/emission/:name", foodEmission.getEmission);
 
   router.patch("/store-image", authHeader.auth, storeImage.storeImage)
-  router.patch("/get-image", authHeader.auth, storeImage.getImage)
+  router.patch("/get-food-info", authHeader.auth, storeImage.getFoodInfo)
 
   app.use(router);
 };
