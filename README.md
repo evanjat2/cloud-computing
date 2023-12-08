@@ -123,7 +123,7 @@ This endpoint is used to retrieve all articles stored in the database. There is 
 - **URL:** `https://ecoscan-api.vercel.app/article/detail`
 - **Method:** GET
 
-This endpoint is used to retrieve specific articles stored in the database. The request body should include title. Upon successful execution, the response will include the user's details and a token.
+This endpoint is used to retrieve specific articles stored in the database. The request body should include title. Upon successful execution, the response will include the article's details.
 
 ## Example Request
 
