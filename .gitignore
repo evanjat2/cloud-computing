@@ -132,5 +132,4 @@ dist
 .pnp.*
 
 # GCP key
-article-eco-scan-bucket-key.json
-ml-ouput-eco-scan-bucket-key.json
+.env
