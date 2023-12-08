@@ -1,10 +1,8 @@
 const processFile = require("../middleware/upload-image-article");
 const { format } = require("util");
-const { Storage } = require("@google-cloud/storage");
+const { storage } = require("../db/cloud-storage");
+const { Readable } = require("stream");
 
-const storage = new Storage({
-  keyFilename: "ml-ouput-eco-scan-bucket-key.json",
-});
 const bucket = storage.bucket("ml-ouput-eco-scan-bucket");
 
 const upload = async (req, res) => {
@@ -20,31 +18,34 @@ const upload = async (req, res) => {
       resumable: false,
     });
 
-    blobStream.on("error", (err) => {
-      res.status(500).send({ message: err.message });
-    });
+    const localReadStream = new Readable();
+    localReadStream.push(req.file.buffer);
+    localReadStream.push(null); // Signal the end of the stream
 
-    blobStream.on("finish", async (data) => {
-      const publicUrl = format(
-        `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-      );
+    localReadStream.pipe(blobStream)
+      .on('error', (err) => {
+        console.log(err);
+        res.status(500).send({ message: err.message });
+      })
+      .on('finish', async () => {
+        const publicUrl = format(
+          `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+        );
 
-      try {
-        await bucket.file(req.file.originalname).makePublic();
-      } catch {
-        return res.status(500).send({
-          message: `Uploaded the file successfully: ${req.file.originalname}, but public access is denied!`,
-          url: publicUrl,
-        });
-      }
-
-      res.status(200).send({
-        message: "Uploaded the file successfully: " + req.file.originalname,
-        url: publicUrl,
+        try {
+          await bucket.file(req.file.originalname).makePublic();
+          res.status(200).send({
+            message: "Uploaded the file successfully: " + req.file.originalname,
+            url: publicUrl,
+          });
+        } catch (err) {
+          console.log(err);
+          res.status(500).send({
+            message: `Uploaded the file successfully: ${req.file.originalname}, but public access is denied!`,
+            url: publicUrl,
+          });
+        }
       });
-    });
-
-    blobStream.end(req.file.buffer);
   } catch (err) {
     console.log(err);
 
@@ -85,8 +86,7 @@ const getListFiles = async (req, res) => {
 const download = async (req, res) => {
   try {
     const [metaData] = await bucket.file(req.params.name).getMetadata();
-    res.redirect(metaData.mediaLink);
-    
+    res.send(metaData.mediaLink);
   } catch (err) {
     res.status(500).send({
       message: "Could not download the file. " + err,
