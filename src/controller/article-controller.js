@@ -34,7 +34,7 @@ const getSpecificArticle = async (req, res) => {
     //Query db by title from request
     const snapshot = await articleRef.where("title", "==", title).get();
 
-    //Handle if not found title
+    //Handle if title is not found
     if (snapshot.empty) {
       console.log("No matching documents.");
       return;
