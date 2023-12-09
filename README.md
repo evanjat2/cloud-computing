@@ -99,7 +99,7 @@ This endpoint is used to retrieve all articles stored in the database. There is 
                     "Paragraph 2"
                 ],
                 "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
-            },
+        },
     },
     {
         "id": "456",
@@ -113,7 +113,7 @@ This endpoint is used to retrieve all articles stored in the database. There is 
                     "Paragraph 2"
                 ],
                 "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
-            },
+        },
     },
 ]
 ```
