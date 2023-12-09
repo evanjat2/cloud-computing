@@ -14,7 +14,8 @@ const getAllArticle = async (req, res) => {
     //Access all data and push it to array
     response.forEach((doc) => {
       const data = doc.data();
-      responseArr.push({id:doc.id, data});
+      data.id = doc.id; // Include the id in the data object
+      responseArr.push(data);
     });
 
     //Send array and status code
@@ -26,8 +27,8 @@ const getAllArticle = async (req, res) => {
 
 const getSpecificArticle = async (req, res) => {
   try {
-   // Get articleId from request parameters
-   const { id: articleId } = req.params;
+    // Get articleId from request parameters
+    const { id: articleId } = req.params;
 
     //Access collection
     const articleRef = db.collection("article-content");
@@ -43,9 +44,9 @@ const getSpecificArticle = async (req, res) => {
 
     // Get data and send it
     const data = snapshot.data();
-    const response = { id: snapshot.id, data };
+    data.id = snapshot.id; // Include the id in the data object
 
-    res.status(200).send(response);
+    res.status(200).send(data);
   } catch (error) {
     console.log(error);
   }
