@@ -88,26 +88,32 @@ This endpoint is used to retrieve all articles stored in the database. There is 
 ```json 
 [
     {
-        "author": "John Doe",
-        "title": "First Article",
-        "author-year": "2022",
-        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
-        "desc": [
-            "Paragraph 1",
-            "Paragraph 2"
-        ],
-        "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+        "id": "123",
+        "data": {
+                "author": "John Doe",
+                "title": "First Article",
+                "author-year": "2022",
+                "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
+                "desc": [
+                    "Paragraph 1",
+                    "Paragraph 2"
+                ],
+                "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+            },
     },
     {
-        "author": "John Doe",
-        "title": "Second Article",
-        "author-year": "2022",
-        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
-        "desc": [
-            "Paragraph 1",
-            "Paragraph 2"
-        ],
-        "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+        "id": "456",
+        "data": {
+                "author": "John Doe",
+                "title": "Second Article",
+                "author-year": "2022",
+                "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
+                "desc": [
+                    "Paragraph 1",
+                    "Paragraph 2"
+                ],
+                "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
+            },
     },
 ]
 ```
@@ -115,15 +121,15 @@ This endpoint is used to retrieve all articles stored in the database. There is 
 
 ### Option 1: Using IP Address
 
-- **URL:** `http://34.138.0.114:8080/article/detail`
+- **URL:** `http://34.138.0.114:8080/article/:id`
 - **Method:** GET
 
 ### Option 2: Using Custom Domain
 
-- **URL:** `https://ecoscan-api.vercel.app/article/detail`
+- **URL:** `https://ecoscan-api.vercel.app/article/:id`
 - **Method:** GET
 
-This endpoint is used to retrieve specific articles stored in the database. The request body should include title. Upon successful execution, the response will include the article's details.
+This endpoint is used to retrieve specific articles stored in the database. The request should include a route parameter named :id to specify the unique identifier of the article being requested. Upon successful execution, the response will include the article's details.
 
 ## Example Request
 
@@ -135,20 +141,18 @@ This endpoint is used to retrieve specific articles stored in the database. The 
 
 ## Example Response
 ```json 
-[
-    {
-        "id": "K07VTvSqFPEPnkBVhwnA",
-        "data": {
-            "author": "John Doe",
-            "title": "Food Emissions",
-            "author-year": "2022",
-            "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
-            "desc": [
-                "Paragraph 1",
-                "Paragraph 2"
-            ],
-            "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
-        }
+{
+    "id": "K07VTvSqFPEPnkBVhwnA",
+    "data": {
+        "author": "John Doe",
+        "title": "Food Emissions",
+        "author-year": "2022",
+        "imgUrl": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/maxresdefault.jpg",
+        "desc": [
+            "Paragraph 1",
+            "Paragraph 2"
+        ],
+        "articleUrl": "https://www.nature.com/articles/s43016-021-00225-9"
     }
-]
+}
 ```
