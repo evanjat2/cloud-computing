@@ -13,7 +13,8 @@ const getAllArticle = async (req, res) => {
 
     //Access all data and push it to array
     response.forEach((doc) => {
-      responseArr.push(doc.data());
+      const data = doc.data();
+      responseArr.push({id:doc.id, data});
     });
 
     //Send array and status code
@@ -25,14 +26,14 @@ const getAllArticle = async (req, res) => {
 
 const getSpecificArticle = async (req, res) => {
   try {
-    //Get title from request body
-    const { title } = req.body;
+   // Get articleId from request parameters
+   const { id: articleId } = req.params;
 
     //Access collection
     const articleRef = db.collection("article-content");
 
-    //Query db by title from request
-    const snapshot = await articleRef.where("title", "==", title).get();
+    // Query db by document ID (articleId from request)
+    const snapshot = await articleRef.doc(articleId).get();
 
     //Handle if title is not found
     if (snapshot.empty) {
@@ -40,15 +41,11 @@ const getSpecificArticle = async (req, res) => {
       return;
     }
 
-    let responseArr = [];
+    // Get data and send it
+    const data = snapshot.data();
+    const response = { id: snapshot.id, data };
 
-    //Access data and send it
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      responseArr.push({id:doc.id, data});
-    });
-
-    res.status(200).send(responseArr);
+    res.status(200).send(response);
   } catch (error) {
     console.log(error);
   }
