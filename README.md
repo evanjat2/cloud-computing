@@ -131,14 +131,6 @@ This endpoint is used to retrieve all articles stored in the database. There is 
 
 This endpoint is used to retrieve specific articles stored in the database. The request should include a route parameter named :id to specify the unique identifier of the article being requested. Upon successful execution, the response will include the article's details.
 
-## Example Request
-
-```json
-{
-    "title": "Food Emissions"
-}
-```
-
 ## Example Response
 ```json 
 {
