@@ -65,13 +65,15 @@ const signUpUsers = async (req, res) => {
         // Store hash in your password DB.
         if (!user) {
           const docRef = db.collection("users").doc();
+          const freeQuota = 5;
           await docRef.set({
             username: username,
             firstName: firstName,
             lastName: lastName,
             password: hash,
+            quota: freeQuota,
           });
-          const user = { username, firstName, lastName };
+          const user = { username, firstName, lastName, quota:freeQuota };
           const userId = docRef.id;
           const payload = {
             user: user,
