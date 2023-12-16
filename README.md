@@ -146,7 +146,7 @@ This endpoint is used to retrieve specific articles stored in the database. The 
 
 ### Using Cloud Run
 
-- **URL:** `http://34.138.0.114:8080/article/:id](https://predict-pbjv724rza-et.a.run.app/predict/`
+- **URL:** `https://predict-pbjv724rza-et.a.run.app/predict/`
 - **Method:** POST
 
 This endpoint is used to send food images to the model. The request should include an image file with the specified conditions below. Upon successful execution, the response will include the food details.
