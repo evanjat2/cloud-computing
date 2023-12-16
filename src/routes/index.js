@@ -4,15 +4,14 @@ const articleController = require("../controller/article-controller");
 const mlOuputController = require("../controller/ml-output-controller");
 const authController = require("../controller/authController");
 const storeImage = require("../controller/store-model-output-controller");
-const authHeader = require("../middleware/auth-header")
+const authHeader = require("../middleware/auth-header");
+const quota = require("../controller/quotaController");
 
 let routes = (app) => {
   router.get("/article", articleController.getAllArticle);
   router.get("/article/:id", articleController.getSpecificArticle);
 
   router.post("/scan-result/upload", mlOuputController.upload);
-  // router.get("/scan-result/list", mlOuputController.getListFiles);
-  // router.get("/scan-result/list/:name", mlOuputController.download);
 
   router.post("/auth/signUp", authController.signUpUsers);
   router.post("/auth/login",authController.loginUsers);
