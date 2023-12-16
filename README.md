@@ -142,3 +142,33 @@ This endpoint is used to retrieve specific articles stored in the database. The 
     "id": "123",
 }
 ```
+## Endpoint Post Image To Model
+
+### Using Cloud Run
+
+- **URL:** `http://34.138.0.114:8080/article/:id](https://predict-pbjv724rza-et.a.run.app/predict/`
+- **Method:** POST
+
+This endpoint is used to send food images to the model. The request should include an image file with the specified conditions below. Upon successful execution, the response will include the food details.
+
+## Example Request
+
+```json
+{
+    "image": image file
+}
+```
+
+## Example Response
+```json 
+{
+    "calcium": "28.26 mg",
+    "carbohydrates": "75.56 g",
+    "emission": "2.39 kg CO2",
+    "fat": "1.69 g",
+    "food-name": "Bread",
+    "protein": "8.57 g",
+    "vitamins": "B1, B2"
+}
+```
+
