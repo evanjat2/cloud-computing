@@ -72,41 +72,6 @@ const upload = async (req, res) => {
   }
 };
 
-const getListFiles = async (req, res) => {
-  try {
-    const [files] = await bucket.getFiles();
-    let fileInfos = [];
-
-    files.forEach((file) => {
-      fileInfos.push({
-        name: file.name,
-        url: file.metadata.mediaLink,
-      });
-    });
-
-    res.status(200).send(fileInfos);
-  } catch (err) {
-    console.log(err);
-
-    res.status(500).send({
-      message: "Unable to read list of files!",
-    });
-  }
-};
-
-const download = async (req, res) => {
-  try {
-    const [metaData] = await bucket.file(req.params.name).getMetadata();
-    res.send(metaData.mediaLink);
-  } catch (err) {
-    res.status(500).send({
-      message: "Could not download the file. " + err,
-    });
-  }
-};
-
 module.exports = {
   upload,
-  getListFiles,
-  download,
 };
