@@ -19,6 +19,8 @@ let routes = (app) => {
   router.patch("/store-result", authHeader.auth, storeImage.storeModelOutput)
   router.patch("/get-result-info", authHeader.auth, storeImage.getOutputInfo)
 
+  router.patch("/quota", authHeader.auth, quota.addQuota);
+  
   app.use(router);
 };
 
