@@ -172,3 +172,139 @@ This endpoint is used to send food images to the model. The request should inclu
 }
 ```
 
+## Endpoint Store Image
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/scan-result/upload`
+- **Method:** POST
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/scan-result/upload`
+- **Method:** POST
+
+This endpoint is used to stored food images to the model. Image file name must unique. The request should include an image file with the specified conditions below. Upon successful execution, the response will include the link image URL.
+
+## Example Request
+
+```json
+{
+    "file": image file
+}
+```
+
+## Example Response
+```json 
+{
+    "message": "Uploaded the file successfully: 817845.png",
+    "url": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/817845.png"
+}
+```
+
+## Endpoint Store Result Model
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/store-result`
+- **Method:** PATCH
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/store-result`
+- **Method:** PATCH
+
+This endpoint is used to stored result model. This endpoint requires a request and headers as shown below. Upon successful execution, the response will include a message stating that the data has been successfully saved, along with the saved data.
+
+## Example Header
+
+```json
+{
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywiaWF0IjoxNzAyODAyNTY0LCJleHAiOjE3MDI4MDYxNjR9.vGXASz-aqg9sv2exVdydnlYWrIxJ2jLfr5EKZ_cYTbM"
+}
+```
+
+## Example Request
+
+```json
+{
+    "calcium": "28.26 mg",
+    "carbohydrates": "75.56 g",
+    "emission": "2.39 kg CO2",
+    "fat": "1.69 g",
+    "food_name": "Bread",
+    "protein": "8.57 g",
+    "vitamins": "B1, B2",
+    "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFried_egg&psig=AOvVaw17nZV0ViGTZNpzB3U5_5u5&ust=1702821656626000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCOjzjZKPlIMDFQAAAAAdAAAAABAE"
+}
+```
+
+## Example Response
+```json 
+{
+    "data": {
+        "userId": 123,
+        "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFried_egg&psig=AOvVaw17nZV0ViGTZNpzB3U5_5u5&ust=1702821656626000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCOjzjZKPlIMDFQAAAAAdAAAAABAE",
+        "food_name": "Bread",
+        "emission": "2.39 kg CO2",
+        "calcium": "28.26 mg",
+        "carbohydrates": "75.56 g",
+        "fat": "1.69 g",
+        "protein": "8.57 g",
+        "vitamins": "B1, B2"
+    },
+    "message": "data has been stored"
+}
+```
+
+## Endpoint Get Result Model
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/get-result-info`
+- **Method:** PATCH
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/get-result-info`
+- **Method:** PATCH
+
+This endpoint is used to get result model. This endpoint requires a headers as shown below. Upon successful execution, the response will include all data stored based on the user's ID.
+
+## Example Header
+
+```json
+{
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywiaWF0IjoxNzAyODAyNTY0LCJleHAiOjE3MDI4MDYxNjR9.vGXASz-aqg9sv2exVdydnlYWrIxJ2jLfr5EKZ_cYTbM"
+}
+```
+
+## Example Response
+```json 
+[
+    {
+        "carbohydrates": "75.56 g",
+        "food_name": "Bread",
+        "emission": "2.39 kg CO2",
+        "calcium": "28.26 mg",
+        "vitamins": "B1, B2",
+        "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFried_egg&psig=AOvVaw17nZV0ViGTZNpzB3U5_5u5&ust=1702821656626000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCOjzjZKPlIMDFQAAAAAdAAAAABAE",
+        "protein": "8.57 g",
+        "fat": "1.69 g",
+        "userId": 123,
+        "dataId": "CnHYPB4v76C7gFjjbIro"
+    },
+    {
+        "carbohydrates": "75.56 g",
+        "food_name": "Bread",
+        "emission": "2.39 kg CO2",
+        "calcium": "28.26 mg",
+        "vitamins": "B1, B2",
+        "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFried_egg&psig=AOvVaw17nZV0ViGTZNpzB3U5_5u5&ust=1702821656626000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCOjzjZKPlIMDFQAAAAAdAAAAABAE",
+        "protein": "8.57 g",
+        "fat": "1.69 g",
+        "userId": 123,
+        "dataId": "JWgu87mxl2zWilQFvxyp"
+    }
+]
+```
