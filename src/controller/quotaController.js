@@ -37,4 +37,42 @@ const addQuota = async (req, res) => {
   }
 };
 
-module.exports = { addQuota };
+const checkQuota = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const docRef = db.collection("users").doc(userId);
+    const doc = await docRef.get();
+    const user = doc.data();
+    if (user.quota >= 1) {
+      res.json({ isNotZero: true });
+    } else {
+      res.json({ isNotZero: false });
+    }
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const reduceQuota = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const docRef = db.collection("users").doc(userId);
+    const doc = await docRef.get();
+    const user = doc.data();
+    user.quota -= 1;
+    user.password = undefined;
+    await docRef.set({ quota: user.quota }, { merge: true });
+    const payload = {
+      user: user,
+      userId: userId,
+    };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_LIFETIME,
+    });
+    res.json({ user, token });
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+module.exports = { addQuota, checkQuota, reduceQuota };
