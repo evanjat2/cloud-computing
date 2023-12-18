@@ -308,3 +308,47 @@ This endpoint is used to get result model. This endpoint requires a headers as s
     }
 ]
 ```
+
+
+## Endpoint Add Quota
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/quota`
+- **Method:** PATCH
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/quota`
+- **Method:** PATCH
+
+This endpoint is used to add the quota. Upon succesful execution, the response will include the user's info with the updated quota.
+### Example Header
+
+```json
+{
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywiaWF0IjoxNzAyODAyNTY0LCJleHAiOjE3MDI4MDYxNjR9.vGXASz-aqg9sv2exVdydnlYWrIxJ2jLfr5EKZ_cYTbM"
+}
+```
+
+### Example Request
+
+```json
+{
+    "package": "Bronze"
+}
+```
+
+You can choose between Bronze, Silver, and Gold for the package. 
+
+### Example Response
+```json 
+{
+    "user": {
+        "username": "example_username",
+        "firstName": "John",
+        "lastName": "Doe",
+        "quota": 5
+    }
+}
+```
