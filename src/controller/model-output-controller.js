@@ -42,6 +42,7 @@ const storeModelOutput = async (req, res) => {
       fat,
       protein,
       vitamins,
+      dataId: docRef.id, // Include the ID in the response
     };
 
     res.status(200).json({ data, message: "data has been stored" });
