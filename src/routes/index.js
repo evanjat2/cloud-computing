@@ -21,8 +21,6 @@ let routes = (app) => {
   router.patch("/get-result-info/:id", authHeader.auth, modelOuput.getSpecificOutput)
 
   router.patch("/quota/add", authHeader.auth, quota.addQuota);
-  router.post("/quota", quota.checkQuota);
-  router.patch("/quota/reduce", quota.reduceQuota);
   
   app.use(router);
 };
