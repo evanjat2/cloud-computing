@@ -9,6 +9,9 @@ const addQuota = async (req, res) => {
     const docRef = db.collection("users").doc(userId);
     const doc = await docRef.get();
     const user = doc.data();
+    if (user.quota === undefined) {
+      user.quota = 0;
+    }
     let isError = false;
     package == "Bronze"
       ? (user.quota += 15)
