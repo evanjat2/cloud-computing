@@ -17,9 +17,6 @@ const storeModelOutput = async (req, res) => {
     //Verified user by token
     const userId = req.user.userId;
 
-    //Access collection
-    const collectionRef = db.collection("food-emission");
-
     //Stored all information to firebase
     const docRef = db.collection("model-output").doc();
     await docRef.set({
