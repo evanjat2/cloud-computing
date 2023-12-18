@@ -351,20 +351,21 @@ This endpoint is used to retrieve specific result model stored in the database. 
 
 ### Option 1: Using IP Address
 
-- **URL:** `http://34.138.0.114:8080/quota`
+- **URL:** `http://34.138.0.114:8080/quota/add`
 - **Method:** PATCH
 
 ### Option 2: Using Custom Domain
 
-- **URL:** `https://ecoscan-api.vercel.app/quota`
+- **URL:** `https://ecoscan-api.vercel.app/quota/add`
 - **Method:** PATCH
 
 This endpoint is used to add the quota. Upon succesful execution, the response will include the user's info with the updated quota.
+
 ### Example Header
 
 ```json
 {
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywiaWF0IjoxNzAyODAyNTY0LCJleHAiOjE3MDI4MDYxNjR9.vGXASz-aqg9sv2exVdydnlYWrIxJ2jLfr5EKZ_cYTbM"
+  "authorization": "example_token"
 }
 ```
 
@@ -372,20 +373,94 @@ This endpoint is used to add the quota. Upon succesful execution, the response w
 
 ```json
 {
-    "package": "Bronze"
+  "package": "Bronze"
 }
 ```
 
-You can choose between Bronze, Silver, and Gold for the package. 
+You can choose between Bronze, Silver, and Gold for the package.
 
 ### Example Response
-```json 
+
+```json
+{
+  "user": {
+    "username": "example_username",
+    "firstName": "John",
+    "lastName": "Doe",
+    "quota": 5
+  },
+  "token": "example_token"
+}
+```
+
+## Endpoint Check Quota
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/quota`
+- **Method:** POST
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/quota`
+- **Method:** POST
+
+This endpoint is used to check the quota. Upon succesful execution, the response will include json structured boolean isNotZero variable.
+
+### Example Request
+
+```json
+{
+  "userId": "your_user_id"
+}
+```
+
+This endpoint is not used for client, so the user id can be taken from backend.
+
+### Example Response
+
+```json
+{
+    {
+    "isNotZero": true
+    }
+}
+```
+
+## Endpoint Reduce Quota
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/quota/reduce`
+- **Method:** PATCH
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/quota/reduce`
+- **Method:** PATCH
+
+This endpoint is used to reduce the quota. Upon succesful execution, the user's quota will be reduced.
+
+### Example Request
+
+```json
+{
+  "userId": "your_user_id"
+}
+```
+
+This endpoint is not used for client, so the userId can be taken from backend.
+
+### Example Response
+
+```json
 {
     "user": {
-        "username": "example_username",
-        "firstName": "John",
-        "lastName": "Doe",
-        "quota": 5
-    }
+        "firstName": "Evan",
+        "lastName": "Ananda",
+        "username": "EvanAJ2",
+        "quota": 183
+    },
+    "token": "example_token"
 }
 ```
