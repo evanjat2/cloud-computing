@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const articleController = require("../controller/article-controller");
-const mlOuputController = require("../controller/ml-output-controller");
+const imageToGCS = require("../controller/image-to-gcs-controller.js");
 const authController = require("../controller/authController");
-const storeImage = require("../controller/store-model-output-controller");
+const modelOuput = require("../controller/model-output-controller.js");
 const authHeader = require("../middleware/auth-header");
 const quota = require("../controller/quotaController");
 
@@ -11,13 +11,14 @@ let routes = (app) => {
   router.get("/article", articleController.getAllArticle);
   router.get("/article/:id", articleController.getSpecificArticle);
 
-  router.post("/scan-result/upload", mlOuputController.upload);
+  router.post("/scan-result/upload", imageToGCS.upload);
 
   router.post("/auth/signUp", authController.signUpUsers);
   router.post("/auth/login",authController.loginUsers);
 
-  router.patch("/store-result", authHeader.auth, storeImage.storeModelOutput)
-  router.patch("/get-result-info", authHeader.auth, storeImage.getOutputInfo)
+  router.patch("/store-result", authHeader.auth, modelOuput.storeModelOutput)
+  router.patch("/get-result-info", authHeader.auth, modelOuput.getOutputInfo)
+  router.patch("/get-result-info/:id", authHeader.auth, modelOuput.getSpecificOutput)
 
   router.patch("/quota", authHeader.auth, quota.addQuota);
   
