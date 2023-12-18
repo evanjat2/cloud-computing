@@ -6,6 +6,7 @@ const authController = require("../controller/authController");
 const modelOuput = require("../controller/model-output-controller.js");
 const authHeader = require("../middleware/auth-header");
 const quota = require("../controller/quotaController");
+const predict = require("../controller/send-img-to-model-controller.js");
 
 let routes = (app) => {
   router.get("/article", articleController.getAllArticle);
@@ -21,6 +22,8 @@ let routes = (app) => {
   router.patch("/get-result-info/:id", authHeader.auth, modelOuput.getSpecificOutput)
 
   router.patch("/quota/add", authHeader.auth, quota.addQuota);
+
+  router.patch("/predict", authHeader.auth, predict.checkQuota)
   
   app.use(router);
 };
