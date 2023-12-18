@@ -79,7 +79,36 @@ const getOutputInfo = async (req, res) => {
   }
 };
 
+const getSpecificOutput = async (req, res) => {
+  try {
+    // Get articleId from request parameters
+    const { id: dataId } = req.params;
+
+    //Access collection
+    const articleRef = db.collection("model-output");
+
+    // Query db by document ID (articleId from request)
+    const snapshot = await articleRef.doc(dataId).get();
+
+    //Handle if title is not found
+    if (snapshot.empty) {
+      console.log("No matching documents.");
+      return;
+    }
+
+    // Get data and send it
+    const data = snapshot.data();
+    data.id = snapshot.id; // Include the id in the data object
+
+    res.status(200).send(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 module.exports = {
   storeModelOutput,
   getOutputInfo,
+  getSpecificOutput,
 };

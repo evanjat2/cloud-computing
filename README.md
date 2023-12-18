@@ -172,7 +172,7 @@ This endpoint is used to send food images to the model. The request should inclu
 }
 ```
 
-## Endpoint Store Image
+## Endpoint Store Image To Google Cloud Storage
 
 ### Option 1: Using IP Address
 
@@ -202,7 +202,7 @@ This endpoint is used to stored food images to the model. Image file name must u
 }
 ```
 
-## Endpoint Store Result Model
+## Endpoint Store Result Model To Firestore
 
 ### Option 1: Using IP Address
 
@@ -309,6 +309,43 @@ This endpoint is used to get result model. This endpoint requires a headers as s
 ]
 ```
 
+## Endpoint Get Specific Result Model By DataID
+
+### Option 1: Using IP Address
+
+- **URL:** `http://34.138.0.114:8080/get-result-info/:id`
+- **Method:** PATCH
+
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/get-result-info/:id`
+- **Method:** PATCH
+
+This endpoint is used to retrieve specific result model stored in the database. The request should include a route parameter named :id to specify the unique identifier of the data being requested. Upon successful execution, the response will include the data's details.
+
+## Example Header
+
+```json
+{
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywiaWF0IjoxNzAyODAyNTY0LCJleHAiOjE3MDI4MDYxNjR9.vGXASz-aqg9sv2exVdydnlYWrIxJ2jLfr5EKZ_cYTbM"
+}
+```
+
+## Example Response
+```json 
+{
+    "carbohydrates": "75.56 g",
+    "food_name": "Bread",
+    "emission": "2.39 kg CO2",
+    "calcium": "28.26 mg",
+    "vitamins": "B1, B2",
+    "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFried_egg&psig=AOvVaw17nZV0ViGTZNpzB3U5_5u5&ust=1702821656626000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCOjzjZKPlIMDFQAAAAAdAAAAABAE",
+    "protein": "8.57 g",
+    "fat": "1.69 g",
+    "userId": 123,
+    "id": "CnHYPB4v76C7gFjjbIro"
+}
+```
 
 ## Endpoint Add Quota
 
