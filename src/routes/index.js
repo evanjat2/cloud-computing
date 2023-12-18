@@ -23,7 +23,7 @@ let routes = (app) => {
 
   router.patch("/quota/add", authHeader.auth, quota.addQuota);
 
-  router.patch("/predict", authHeader.auth, predict.checkQuota)
+  router.patch("/predict", authHeader.auth, predict.processData)
   
   app.use(router);
 };

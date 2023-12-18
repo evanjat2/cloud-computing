@@ -29,13 +29,11 @@ const sendImageToFlaskEndpoint = async (imageData) => {
   }
 };
 
-const checkQuota = async (req, res) => {
-  console.log(req);
-
+const processData = async (req, res) => {
   //Verified user by token
   const userId = req.user.userId;
-  const isHaveQuota = await checkQuota(userId);
-  const result = await reduceQuota(userId);
+  const isHaveQuota = await quota.checkQuota(userId);
+  const result = await quota.reduceQuota(userId);
   const { user, token } = result;
   res.send({ isHaveQuota, user, token });
   //   try {
@@ -65,4 +63,4 @@ const checkQuota = async (req, res) => {
   //   }
 };
 
-module.exports = { checkQuota };
+module.exports = { processData };
