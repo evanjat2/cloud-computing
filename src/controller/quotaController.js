@@ -40,25 +40,23 @@ const addQuota = async (req, res) => {
   }
 };
 
-const checkQuota = async (req, res) => {
+const checkQuota = async (userId) => {
   try {
-    const { userId } = req.body;
     const docRef = db.collection("users").doc(userId);
     const doc = await docRef.get();
     const user = doc.data();
     if (user.quota >= 1) {
-      res.json({ isNotZero: true });
+      return true;
     } else {
-      res.json({ isNotZero: false });
+      return false;
     }
   } catch (error) {
-    res.send(error);
+    console.log(error);
   }
 };
 
-const reduceQuota = async (req, res) => {
+const reduceQuota = async (userId) => {
   try {
-    const { userId } = req.body;
     const docRef = db.collection("users").doc(userId);
     const doc = await docRef.get();
     const user = doc.data();
@@ -72,10 +70,19 @@ const reduceQuota = async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_LIFETIME,
     });
-    res.json({ user, token });
+    const result = { user, token };
+    return result;
   } catch (error) {
-    res.json(error);
+    console.log(error);
   }
 };
 
-module.exports = { addQuota, checkQuota, reduceQuota };
+// const checkFunction = async (req, res) => {
+//   const userId = req.user.userId;
+//   const isHaveQuota = await checkQuota(userId);
+//   const result = await reduceQuota(userId);
+//   const { user, token } = result;
+//   res.send({ isHaveQuota, user, token });
+// };
+
+module.exports = { reduceQuota, checkQuota, addQuota };
