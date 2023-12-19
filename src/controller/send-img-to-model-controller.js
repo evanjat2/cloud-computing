@@ -40,7 +40,7 @@ const processData = async (req, res) => {
     const result = await quota.reduceQuota(userId);
     const { user, token } = result;
 
-    res.send({ isHaveQuota, user, token, modelResponse: responseFlask });
+    res.send({ user, token, modelResponse: responseFlask });
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).send({ error: 'Internal Server Error' });

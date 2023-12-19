@@ -4,6 +4,17 @@ const { storage } = require("../db/cloud-storage");
 const { Readable } = require("stream");
 
 const bucket = storage.bucket("ml-ouput-eco-scan-bucket");
+function generateRandomString(length) {
+  const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let randomString = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomString += characters.charAt(randomIndex);
+  }
+
+  return randomString;
+}
 
 const upload = async (req, res) => {
   try {
@@ -16,8 +27,9 @@ const upload = async (req, res) => {
     }
 
     //-------------------------------Store Image To Cloud Storage-------------------------------//
-    //Get image fie name
-    const blob = bucket.file(req.file.originalname);
+    //Get image file name
+    const modifiedName = generateRandomString(6) + req.file.originalname;
+    const blob = bucket.file(modifiedName);
 
     //Open stream processing
     const blobStream = blob.createWriteStream({
@@ -30,23 +42,23 @@ const upload = async (req, res) => {
     localReadStream.push(null); // Signal the end of the stream
 
     //Start pipe to store image file on google storage
-    localReadStream.pipe(blobStream)
+    localReadStream
+      .pipe(blobStream)
       //Error handler
-      .on('error', (err) => {
+      .on("error", (err) => {
         console.log(err);
         res.status(500).send({ message: err.message });
       })
       //Finish handler
-      .on('finish', async () => {
+      .on("finish", async () => {
         const publicUrl = format(
           `https://storage.googleapis.com/${bucket.name}/${blob.name}`
         );
-
         //Send image url
         try {
-          await bucket.file(req.file.originalname).makePublic();
+          await bucket.file(modifiedName).makePublic();
           res.status(200).send({
-            message: "Uploaded the file successfully: " + req.file.originalname,
+            message: "Uploaded the file successfully: " + modifiedName,
             url: publicUrl,
           });
         } catch (err) {
