@@ -142,14 +142,19 @@ This endpoint is used to retrieve specific articles stored in the database. The 
     "id": "123",
 }
 ```
-## Endpoint Post Image To Model
+## Endpoint Store Image To Google Cloud Storage
 
-### Using Cloud Run
+### Option 1: Using IP Address
 
-- **URL:** `https://predict-pbjv724rza-et.a.run.app/predict/`
+- **URL:** `http://34.138.0.114:8080/upload`
 - **Method:** POST
 
-This endpoint is used to send food images to the model. The request should include an image file with the specified conditions below. Upon successful execution, the response will include the food details.
+### Option 2: Using Custom Domain
+
+- **URL:** `https://ecoscan-api.vercel.app/upload`
+- **Method:** POST
+
+This endpoint is used to send food images to the Google Cloud Storage. The request should include an image file with the specified conditions below. Upon successful execution, the response will include the image url.
 
 ## Example Request
 
@@ -162,43 +167,54 @@ This endpoint is used to send food images to the model. The request should inclu
 ## Example Response
 ```json 
 {
-    "calcium": "28.26 mg",
-    "carbohydrates": "75.56 g",
-    "emission": "2.39 kg CO2",
-    "fat": "1.69 g",
-    "food-name": "Bread",
-    "protein": "8.57 g",
-    "vitamins": "B1, B2"
+    "message": "Uploaded the file successfully: rice.png",
+    "url": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/rice.png"
 }
 ```
 
-## Endpoint Store Image To Google Cloud Storage
+## Endpoint Process Image Url to ML Model
 
 ### Option 1: Using IP Address
 
-- **URL:** `http://34.138.0.114:8080/scan-result/upload`
-- **Method:** POST
+- **URL:** `http://34.138.0.114:8080/scan-result/predict`
+- **Method:** PATCH
 
 ### Option 2: Using Custom Domain
 
-- **URL:** `https://ecoscan-api.vercel.app/scan-result/upload`
-- **Method:** POST
+- **URL:** `https://ecoscan-api.vercel.app/scan-result/predict`
+- **Method:** PATCH
 
-This endpoint is used to stored food images to the model. Image file name must unique. The request should include an image file with the specified conditions below. Upon successful execution, the response will include the link image URL.
+This endpoint is used to predict the image from the ML model. The request should include an image url with the specified conditions below. Upon successful execution, the response will include user, token, and modelResponse json.
 
 ## Example Request
 
 ```json
 {
-    "file": image file
+    "image_url":"https://storage.googleapis.com/ml-ouput-eco-scan-bucket/dessert.png"
 }
 ```
 
 ## Example Response
 ```json 
 {
-    "message": "Uploaded the file successfully: 817845.png",
-    "url": "https://storage.googleapis.com/ml-ouput-eco-scan-bucket/817845.png"
+    // Please update the user after you received the response.
+    "user": {
+        "firstName": "Evan",
+        "lastName": "Ananda",
+        "username": "EvanAJ2",
+        "quota": 174
+    },
+    // Please update the token after you received the response.
+    "token": "your_token",
+    "modelResponse": {
+        "calcium": "89.47 mg",
+        "carbohydrates": "30.29 g",
+        "emission": "4.85 kg CO2",
+        "fat": "17.30 g",
+        "food-name": "Dessert",
+        "protein": "3.76 g",
+        "vitamins": "A, B"
+    }
 }
 ```
 
@@ -392,6 +408,8 @@ You can choose between Bronze, Silver, and Gold for the package.
   "token": "example_token"
 }
 ```
+
+# For Backend
 
 ## Endpoint Check Quota
 
