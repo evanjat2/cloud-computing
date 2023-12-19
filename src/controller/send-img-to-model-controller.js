@@ -15,8 +15,8 @@ const sendImageUrlToFlask = async (image_url) => {
 
     return modelResponse;
   } catch (error) {
-    console.error('Error sending image URL to Flask endpoint:', error.message);
-    throw new Error('Failed to send image URL to Flask endpoint');
+    const modelResponse = { response: "Gagal memprediksi model" };
+    return modelResponse;
   }
 };
 
@@ -24,13 +24,13 @@ const sendImageUrlToFlask = async (image_url) => {
 const processData = async (req, res) => {
   try {
     const userId = req.user.userId;
-    const { image_url } = req.body; 
+    const { image_url } = req.body;
 
     // Check quota scan
     const isHaveQuota = await quota.checkQuota(userId);
 
     if (!isHaveQuota) {
-      return res.status(403).send({ error: 'Quota exceeded' });
+      return res.status(403).send({ error: "Quota exceeded" });
     }
 
     // Send image_url to function
@@ -42,8 +42,8 @@ const processData = async (req, res) => {
 
     res.send({ user, token, modelResponse: responseFlask });
   } catch (error) {
-    console.error('Error:', error.message);
-    res.status(500).send({ error: 'Internal Server Error' });
+    console.error("Error:", error.message);
+    res.status(500).send({ error: "Internal Server Error" });
   }
 };
 
