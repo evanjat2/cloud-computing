@@ -15,7 +15,7 @@ const sendImageUrlToFlask = async (image_url) => {
 
     return modelResponse;
   } catch (error) {
-    const modelResponse = { response: "Gagal memprediksi model" };
+    const modelResponse = { response: "Gagal memprediksi model", error: true };
     return modelResponse;
   }
 };
@@ -35,12 +35,14 @@ const processData = async (req, res) => {
 
     // Send image_url to function
     const responseFlask = await sendImageUrlToFlask(image_url);
-
-    // Reduced quota after scan
-    const result = await quota.reduceQuota(userId);
-    const { user, token } = result;
-
-    res.send({ user, token, modelResponse: responseFlask });
+    if (responseFlask.error) {
+      return res.send({ modelResponse: responseFlask });
+      // Reduced quota after successfull scanning
+    } else {
+      const result = await quota.reduceQuota(userId);
+      const { user, token } = result;
+      res.send({ user, token, modelResponse: responseFlask });
+    }
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).send({ error: "Internal Server Error" });
