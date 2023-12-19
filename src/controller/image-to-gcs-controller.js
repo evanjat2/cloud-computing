@@ -46,7 +46,7 @@ const upload = async (req, res) => {
       .pipe(blobStream)
       //Error handler
       .on("error", (err) => {
-        console.log(err);
+        // console.log(err);
         res.status(500).send({ message: err.message });
       })
       //Finish handler
@@ -62,7 +62,7 @@ const upload = async (req, res) => {
             url: publicUrl,
           });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
           res.status(500).send({
             message: `Uploaded the file unsuccessfully:`,
           });
@@ -70,8 +70,6 @@ const upload = async (req, res) => {
       });
     //-------------------------------Store Image To Cloud Storage-------------------------------//
   } catch (err) {
-    console.log(err);
-
     if (err.code == "LIMIT_FILE_SIZE") {
       return res.status(500).send({
         message: "File size cannot be larger than 2MB!",
