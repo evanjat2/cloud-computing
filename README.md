@@ -160,7 +160,7 @@ This endpoint is used to send food images to the Google Cloud Storage. The reque
 
 ```json
 {
-    "image": image file
+    "file": image file
 }
 ```
 
